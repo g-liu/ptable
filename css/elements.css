@@ -1,0 +1,47 @@
+/**
+ * Colors for the groups of elements
+ */
+
+.element {
+	background-color: #bbb;
+}
+
+.nonmetal, .nonmetals {
+	background-color: #2f2;
+}
+
+.halogen, .halogens {
+	background-color: #2ec;
+}
+
+.noble {
+	background-color: #7cf;
+}
+
+.alkali {
+	background-color: #fc3;
+}
+
+.alkaline {
+	background-color: #ff4;
+}
+
+.transition {
+	background-color: #dbb;
+}
+
+.metalloid, .metalloids {
+	background-color: #7d8;
+}
+
+.poor, .posttransition {
+	background-color: #9dc;
+}
+
+.lanthanide, .lanthanides {
+	background-color: #fb9;
+}
+
+.actinide, .actinides {
+	background-color: #ebd;
+}
