@@ -10,6 +10,8 @@
         <div id="ptable-wrapper">
         
         </div>
+
+        <div id="einfo"></div>
         
         <script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
         <script src="ptable.js" type="text/javascript"></script>

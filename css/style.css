@@ -13,8 +13,17 @@ html, body {
 	border-collapse: collapse;
 }
 
-#ptable td {
+#ptable tr:first-child td {
 	text-align: center;
+}
+
+#ptable tr td:first-child {
+	text-align: right;
+}
+
+#ptable td.element {
+	text-align: center;
+	cursor: pointer;
 }
 
 .element {
@@ -37,5 +46,9 @@ html, body {
 
 /* TEMPORARY!!! */
 .element span.name {
+	display: none;
+}
+
+.element .data {
 	display: none;
 }
