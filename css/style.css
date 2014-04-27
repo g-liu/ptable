@@ -9,8 +9,8 @@ html, body {
 }
 
 #ptable {
-	border-spacing: 0;
-	border-collapse: collapse;
+	border-spacing: 1px;
+	table-layout: fixed;
 }
 
 #ptable tr:first-child td {
@@ -27,7 +27,6 @@ html, body {
 }
 
 .element {
-	border: 2px solid black;
 	padding: 0.25em;
 }
 

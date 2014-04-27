@@ -523,7 +523,7 @@
 		<property><label>Element category</label><value>transition metals</value></property>
 		<property><label>Group, period, block</label><value>7, 5, d</value></property>
 		<property><label>Appearance</label><value>silvery gray metal</value></property>
-		<property><label>Standard atomic weight</label><value>[98](0)  g·mol−1</value></property>
+		<property><label>Standard atomic weight</label><value>[98] g·mol−1</value></property>
 		<property><label>Electron configuration</label><value>[Kr] 4d5 5s2</value></property>
 		<property><label>Electrons per shell</label><value>2, 8, 18, 13, 2</value></property>
 	</element>

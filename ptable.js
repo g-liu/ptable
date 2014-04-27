@@ -128,8 +128,8 @@ function showElementsData(table) {
         var symbol = displayProperties[1].replace(/[^A-Za-z]/g, '');
         var number = parseInt(displayProperties[2].replace(/[^0-9]/g, ''));
 
-        var weight = eData.children('input[data-label="Standard atomic weight"]').val();
-            weight = weight.split(' ', 1)[0];
+        var weight = eData.children('input[data-label="Standard atomic weight"]').val().split(' ', 1)[0];
+            weight = weight.charAt(0).match(/[\(|\[]/g) || weight === "Unknown" ? weight : Math.round(parseFloat(weight) * 1000) / 1000;
         var type = eData.children('input[data-label="Element category"]').val();
             type = type.split(' ', 1)[0].toLowerCase().replace(/[^A-Za-z]/g, '');
 
@@ -181,33 +181,10 @@ function addSpacer(table, whichRow) {
 }
 
 /**
- * Displays the information about the element
+ * Displays the information about the selected elements
  * @param number the atomic number of the element whose info to display
  * @param where where to display the info
  */
-/*
-function displayElementInfo(number, where) {
-    var table = $('<table></table>');
-    var tbody = $('<tbody></tbody>')
-        .append($('<tr></tr>')
-            .addClass('header-row')
-            .append($('<th></th>').html('Property'))
-            .append($('<th></th>').html('Value'))
-        );
-
-    $('#e' + number).children('.data').children('input[data-label]').each(function() {
-        var row = $('<tr></tr>');
-        var tdLabel = $('<th></th>').html($(this).data('label'));
-        var tdValue = $('<td></td>').html($(this).val());
-        row.append(tdLabel).append(tdValue);
-        tbody.append(row);
-    });
-
-    table.append(tbody);
-    where.html(table);
-}
-*/
-
 function displayElementInfo(numbers, where) {
     // sanity check
     if(numbers.length === 0 || Math.max.apply(Math, numbers) > 118 || Math.max.apply(Math, numbers) < 1) {
