@@ -207,7 +207,7 @@ function displayElementInfo(numbers, where) {
 
     for(n in numbers) {
         $('#e' + numbers[n]).children('.data').children('input[data-label]').each(function() {
-            if(!properties.hasOwnProperty($(this).data('label')))
+            if(properties.indexOf($(this).data('label')) === -1) // ensure uniqueness
                 properties.push($(this).data('label'));
         });
     }
