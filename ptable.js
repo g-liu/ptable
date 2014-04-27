@@ -79,7 +79,7 @@ function populateElementsData(table, files) {
 
     for(var f in files.files) {
         $.ajax({
-            async: false,
+            async: false, // TODO: Temporary patch.
             type: 'GET',
             url: folder + '/' + files.files[f] + '.' + ext,
             dataType: ext,
@@ -97,28 +97,12 @@ function parseResponse(xml) {
     $(xml).find('element').each(function() {
         var eData = $('#e' + elementCounter + ' .data');
         var jsonData = {};
-        if(!eData.children('input[data-label="name"]').val() || !eData.children('input[data-label="symbol"]').val()) {
-            // manually retrieve name and symbol
-            jsonData['name'] = $(this).find('name').html();
-            jsonData['symbol'] = $(this).find('symbol').html();
-            jsonData['number'] = elementCounter;
-        }
         
         $(this).find('property').each(function() {
             var propLabel = $(this).find('label').html();
             var propValue = $(this).find('value').html();
             jsonData[propLabel]  = propValue;
         });
-        
-        /*$("#e" + elementCounter).find("span.symbol").html(symbol);
-        $("#e" + elementCounter).find("span.name").html(name);
-        $("#e" + elementCounter).find("span.number").html(elementCounter);
-        $("#e" + elementCounter).find("span.weight").html(weight);
-
-        $("#e" + elementCounter)
-            .addClass(type)
-            .attr({ 'title': name });
-        */
 
         $.each(jsonData, function(label, value) {
             var metadata = $('<input></input>')
@@ -139,9 +123,11 @@ function showElementsData(table) {
     table.find('td.element').each(function() {
         var eData = $(this).children('.data');
 
-        var name = eData.children('input[data-label="name"]').val();
-        var symbol = eData.children('input[data-label="symbol"]').val();
-        var number = eData.children('input[data-label="number"]').val();
+        var displayProperties = eData.children('input[data-label="Name, symbol, number"]').val().split(',', 3);
+        var name = displayProperties[0].replace(/[^A-Za-z]/g, '');
+        var symbol = displayProperties[1].replace(/[^A-Za-z]/g, '');
+        var number = parseInt(displayProperties[2].replace(/[^0-9]/g, ''));
+
         var weight = eData.children('input[data-label="Standard atomic weight"]').val();
             weight = weight.split(' ', 1)[0];
         var type = eData.children('input[data-label="Element category"]').val();
@@ -199,17 +185,82 @@ function addSpacer(table, whichRow) {
  * @param number the atomic number of the element whose info to display
  * @param where where to display the info
  */
+/*
 function displayElementInfo(number, where) {
-    var ul = $('<ul></ul>');
+    var table = $('<table></table>');
+    var tbody = $('<tbody></tbody>')
+        .append($('<tr></tr>')
+            .addClass('header-row')
+            .append($('<th></th>').html('Property'))
+            .append($('<th></th>').html('Value'))
+        );
+
     $('#e' + number).children('.data').children('input[data-label]').each(function() {
-        var html = $(this).data('label') + ': ' + $(this).val();
-        var li = $('<li></li>');
-        li.html(html);
-        ul.append(li);
+        var row = $('<tr></tr>');
+        var tdLabel = $('<th></th>').html($(this).data('label'));
+        var tdValue = $('<td></td>').html($(this).val());
+        row.append(tdLabel).append(tdValue);
+        tbody.append(row);
     });
 
-    where.html(ul);
+    table.append(tbody);
+    where.html(table);
 }
+*/
+
+function displayElementInfo(numbers, where) {
+    // sanity check
+    if(numbers.length === 0 || Math.max.apply(Math, numbers) > 118 || Math.max.apply(Math, numbers) < 1) {
+        console.log("Invalid parameters.");
+        return;
+    }
+
+    var table = $('<table></table>');
+    var tbody = $('<tbody></tbody>')
+        .append($('<tr></tr>')
+            .addClass('header-row')
+            .append($('<th></th>').html('Property'))
+            .append($('<th></th>')
+                .html('Value')
+                .prop('colspan', numbers.length)
+            )
+        );
+
+    var properties = [];
+
+    for(n in numbers) {
+        $('#e' + numbers[n]).children('.data').children('input[data-label]').each(function() {
+            if(!properties.hasOwnProperty($(this).data('label')))
+                properties.push($(this).data('label'));
+        });
+    }
+
+    for(p in properties) {
+        var row = $('<tr></tr>');
+        var tdLabel = $('<th></th>').html(properties[p]);
+
+        row.append(tdLabel);
+
+        for(n in numbers) {
+            var tdData = $('<td></td>');
+            var data = $('#e' + numbers[n]).children('.data');
+            if(data.children('input[data-label="' + properties[p] + '"]').length) {
+                tdData.html(data.children('input[data-label="' + properties[p] + '"]').val());
+            }
+            else {
+                tdData.html('--');
+            }
+
+            row.append(tdData);
+        }
+
+        tbody.append(row);
+    }
+
+    table.append(tbody);
+    where.html(table);
+}
+
 
 $(document).ready(function() {
     /**
@@ -240,6 +291,9 @@ $(document).ready(function() {
             ],
             "format": "xml"
         }
+
+    var selectMode = false;
+    var selected = [];
     
     generateTable($('#ptable-wrapper'), tableId);
     labelElementCells($("#" + tableId), elementCells);
@@ -248,7 +302,40 @@ $(document).ready(function() {
     numberRowsAndColumns($("#" + tableId));
     addSpacer($("#" + tableId), 8);
 
-    $("#" + tableId + " td.element").click(function() {
-        displayElementInfo($(this).attr('id').substring(1), $('#' + infoId));
+    $(document).keydown(function(e) {
+        var code = e.keyCode || e.which;
+        if(code == 17) {
+            selectMode = true;
+        }
+    });
+
+    $(document).keyup(function() {
+        selectMode = false;
+    });
+
+    $('#' + tableId + ' td.element').click(function() {
+        var number = parseInt($(this).attr('id').substring(1));
+
+        if(selectMode) {
+            var index = $.inArray(number, selected);
+            if(index > -1) { // remove from array
+                selected.splice(index, 1);
+                $(this).removeClass('selected');
+            }
+            else { // add to array
+                selected.push(number);
+                $(this).addClass('selected');
+            }
+        }
+        else {
+            while(selected.length > 0) selected.pop();
+            $('#' + tableId + ' td.element.selected').each(function() {
+                $(this).removeClass('selected');
+            });
+            selected.push(number);
+            $(this).addClass('selected');
+        }
+
+        displayElementInfo(selected, $('#' + infoId));
     });
 });

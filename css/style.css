@@ -31,8 +31,17 @@ html, body {
 	padding: 0.25em;
 }
 
+.element.selected {
+	outline: 2px solid gold;
+}
+
 .element span {
 	display: block;
+}
+
+.element span.name,
+.element span.symbol {
+	text-transform: capitalize;
 }
 
 .element span.number {
@@ -51,4 +60,24 @@ html, body {
 
 .element .data {
 	display: none;
+}
+
+#einfo table {
+	border: 1px solid #444;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
+#einfo th {
+	font-weight: bold;
+	text-align: right;
+}
+
+#einfo tr.header-row {
+	border-bottom: 1px solid #666;
+}
+
+#einfo tr.header-row th {
+	text-align: initial;
+	font-weight: bold;
 }
