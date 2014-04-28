@@ -3,7 +3,7 @@ Interactive Periodic Table
 
 A Periodic Table visualizer, built with jQuery and XML.
 
-Still a work in progress.
+Still a work in progress. Please report any bugs to the Issues page.
 
 ## How to use
 
