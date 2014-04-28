@@ -11,6 +11,13 @@ html, body {
 #ptable {
 	border-spacing: 1px;
 	table-layout: fixed;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 #ptable tr:first-child td {
@@ -24,6 +31,8 @@ html, body {
 #ptable td.element {
 	text-align: center;
 	cursor: pointer;
+	width: 60px;
+	height: 75px;
 }
 
 .element {
@@ -31,7 +40,8 @@ html, body {
 }
 
 .element.selected {
-	outline: 2px solid gold;
+	-webkit-box-shadow: indianred 0px 0px 0px 4px inset;
+	box-shadow: indianred 0px 0px 0px 4px inset;
 }
 
 .element span {
@@ -67,16 +77,20 @@ html, body {
 	border-collapse: collapse;
 }
 
-#einfo th {
+#einfo table th {
 	font-weight: bold;
 	text-align: right;
 }
 
-#einfo tr.header-row {
+#einfo table tr.header-row {
 	border-bottom: 1px solid #666;
 }
 
-#einfo tr.header-row th {
+#einfo table tr:nth-child(even) {
+	background-color: whitesmoke;
+}
+
+#einfo table tr.header-row th {
 	text-align: initial;
 	font-weight: bold;
 }

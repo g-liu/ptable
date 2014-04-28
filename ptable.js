@@ -188,7 +188,7 @@ function addSpacer(table, whichRow) {
 function displayElementInfo(numbers, where) {
     // sanity check
     if(numbers.length === 0 || Math.max.apply(Math, numbers) > 118 || Math.max.apply(Math, numbers) < 1) {
-        console.log("Invalid parameters.");
+        where.html(""); // clear table
         return;
     }
 
@@ -305,12 +305,19 @@ $(document).ready(function() {
             }
         }
         else {
+            var howMany = selected.length;
+            var last = selected.pop() || -1;
             while(selected.length > 0) selected.pop();
             $('#' + tableId + ' td.element.selected').each(function() {
                 $(this).removeClass('selected');
             });
-            selected.push(number);
-            $(this).addClass('selected');
+            if(howMany > 1 || last !== number) {
+                selected.push(number);
+                $(this).addClass('selected');
+            }
+            else {
+                $(this).removeClass('selected');
+            }
         }
 
         displayElementInfo(selected, $('#' + infoId));
