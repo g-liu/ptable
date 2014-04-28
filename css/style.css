@@ -37,6 +37,7 @@ html, body {
 
 .element {
 	padding: 0.25em;
+	overflow: hidden;
 }
 
 .element.selected {
@@ -46,6 +47,7 @@ html, body {
 
 .element span {
 	display: block;
+	white-space: nowrap;
 }
 
 .element span.name,

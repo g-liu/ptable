@@ -204,8 +204,12 @@ function displayElementInfo(numbers, where) {
         );
 
     var properties = [];
+    var elementGroups = [];
 
     for(n in numbers) {
+        var elementType = $('#e' + numbers[n]).prop('class').split(' ', 2)[1];
+        elementGroups.push(elementType);
+
         $('#e' + numbers[n]).children('.data').children('input[data-label]').each(function() {
             if(properties.indexOf($(this).data('label')) === -1) // ensure uniqueness
                 properties.push($(this).data('label'));
@@ -221,6 +225,7 @@ function displayElementInfo(numbers, where) {
         for(n in numbers) {
             var tdData = $('<td></td>');
             var data = $('#e' + numbers[n]).children('.data');
+
             if(data.children('input[data-label="' + properties[p] + '"]').length) {
                 tdData.html(data.children('input[data-label="' + properties[p] + '"]').val());
             }
@@ -234,6 +239,17 @@ function displayElementInfo(numbers, where) {
         tbody.append(row);
     }
 
+    // add column styles
+    var colgroup = $('<colgroup></colgroup>').append($('<col />')); // add initial column
+    for(e in elementGroups) {
+        var className = elementGroups[e];
+        var col = $('<col />')
+            .addClass(className);
+        colgroup.append(col);
+    }
+
+    table.append(colgroup);
+    
     table.append(tbody);
     where.html(table);
 }
@@ -307,7 +323,9 @@ $(document).ready(function() {
         else {
             var howMany = selected.length;
             var last = selected.pop() || -1;
-            while(selected.length > 0) selected.pop();
+            while(selected.length > 0) {
+                selected.pop();
+            }
             $('#' + tableId + ' td.element.selected').each(function() {
                 $(this).removeClass('selected');
             });
