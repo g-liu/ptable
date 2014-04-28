@@ -15,5 +15,9 @@
         
         <script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
         <script src="ptable.js" type="text/javascript"></script>
+
+        <noscript>
+            Hey! You'll need a JavaScript enabled browser for this periodic table to work.
+        </noscript>
     </body>
 </html>
