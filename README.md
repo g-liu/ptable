@@ -10,7 +10,6 @@ Still a work in progress. Please report any bugs to the Issues page.
 * Click an element to view information about it
 * Hold `Ctrl` and click multiple elements to compare
 
-Demo
-======
+## Demo
 
-http://g-liu.com/sandbox/ptable
+http://g-liu.github.io/ptable
