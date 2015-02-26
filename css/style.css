@@ -38,9 +38,12 @@ html, body {
 .element {
 	padding: 0.25em;
 	overflow: hidden;
+	-webkit-transition: background-color 0.2s ease-out, -webkit-transform 0.15s ease-out, -webkit-box-shadow 0.15s ease-out;
+	transition: background-color 0.2s ease-out, transform 0.15s ease-out, box-shadow 0.15s ease-out;
 }
 
-.element.selected {
+#ptable .element.selected,
+#ptable .element:hover.selected {
 	-webkit-box-shadow: indianred 0px 0px 0px 4px inset;
 	box-shadow: indianred 0px 0px 0px 4px inset;
 }
@@ -56,7 +59,7 @@ html, body {
 }
 
 .element span.number {
-	font-size: small;
+	font-size: 85%;
 }
 
 .element span.symbol {
@@ -64,9 +67,12 @@ html, body {
 	font-weight: bold;
 }
 
-/* TEMPORARY!!! */
 .element span.name {
 	display: none;
+}
+
+.element span.weight {
+	font-size: 90%;
 }
 
 .element .data {
@@ -90,6 +96,10 @@ html, body {
 
 #einfo table tr:nth-child(even) {
 	background-color: whitesmoke;
+}
+#einfo table tr:nth-child(even) td {
+	-webkit-filter: brightness(0.92);
+	filter: brightness(0.92);
 }
 
 #einfo table tr.header-row th {

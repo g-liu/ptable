@@ -5,43 +5,94 @@
 .element {
 	background-color: #bbb;
 }
+#ptable .element:hover {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+
+	-webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.23);
+	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.23);
+}
+#ptable .element:hover,
+#ptable .element.selected {
+	background-color: #ccc;	
+}
 
 .nonmetal, .nonmetals {
 	background-color: #2c5;
+}
+#ptable .nonmetal:hover, #ptable .nonmetals:hover,
+#ptable .nonmetal.selected, #ptable .nonmetals.selected {
+	background-color: #3d6;
 }
 
 .halogen, .halogens {
 	background-color: #2ec;
 }
+#ptable .halogen:hover, #ptable .halogens:hover,
+#ptable .halogen.selected, #ptable .halogens.selected {
+	background-color: #3fd;
+}
 
 .noble {
 	background-color: #7cf;
+}
+#ptable .noble:hover,
+#ptable .noble.selected {
+	background-color: #8df;
 }
 
 .alkali {
 	background-color: #fc3;
 }
+#ptable .alkali:hover,
+#ptable .alkali.selected {
+	background-color: #fd4;
+}
 
 .alkaline {
 	background-color: #ff4;
+}
+#ptable .alkaline:hover,
+#ptable .alkaline.selected {
+	background-color: #ff8;
 }
 
 .transition {
 	background-color: #dbb;
 }
+#ptable .transition:hover,
+#ptable .transition.selected {
+	background-color: #ecc;
+}
 
 .metalloid, .metalloids {
 	background-color: #7d8;
+}
+#ptable .metalloid:hover, #ptable .metalloids:hover,
+#ptable .metalloid.selected, #ptable .metalloids.selected {
+	background-color: #8e9;
 }
 
 .poor, .posttransition {
 	background-color: #9dc;
 }
+#ptable .poor:hover, #ptable .posttransition:hover,
+#ptable .poor.selected, #ptable .posttransition.selected {
+	background-color: #aed;
+}
 
 .lanthanide, .lanthanides {
 	background-color: #fb9;
 }
+#ptable .lanthanide:hover, #ptable .lanthanides:hover,
+#ptable .lanthanide.selected, #ptable .lanthanides.selected {
+	background-color: #fca;
+}
 
 .actinide, .actinides {
 	background-color: #ebd;
+}
+#ptable .actinide:hover, #ptable .actinides:hover,
+#ptable .actinide.selected, #ptable .actinides.selected {
+	background-color: #fce;
 }

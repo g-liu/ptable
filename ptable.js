@@ -223,7 +223,9 @@ function displayElementInfo(numbers, where) {
         row.append(tdLabel);
 
         for(n in numbers) {
-            var tdData = $('<td></td>');
+            var tdData = $('<td></td>', {
+                class: elementGroups[n]
+            });
             var data = $('#e' + numbers[n]).children('.data');
 
             if(data.children('input[data-label="' + properties[p] + '"]').length) {
@@ -240,6 +242,7 @@ function displayElementInfo(numbers, where) {
     }
 
     // add column styles
+    /*
     var colgroup = $('<colgroup></colgroup>').append($('<col />')); // add initial column
     for(e in elementGroups) {
         var className = elementGroups[e];
@@ -249,7 +252,8 @@ function displayElementInfo(numbers, where) {
     }
 
     table.append(colgroup);
-    
+    */
+
     table.append(tbody);
     where.html(table);
 }

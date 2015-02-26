@@ -1371,7 +1371,7 @@
 		<number>114</number>
 		<symbol>Fl</symbol>
 		<name>Flerovium</name>
-		<property><label>Name, symbol, number</label><value>Flerovium, Uuq, 114</value></property>
+		<property><label>Name, symbol, number</label><value>Flerovium, Fl, 114</value></property>
 		<property><label>Element category</label><value>presumably poor metals</value></property>
 		<property><label>Group, period, block</label><value>14, 7, p</value></property>
 		<property><label>Appearance</label><value>unknown, probably silvery white or metallic gray</value></property>
@@ -1395,7 +1395,7 @@
 		<number>116</number>
 		<symbol>Lv</symbol>
 		<name>Livermorium</name>
-		<property><label>Name, symbol, number</label><value>Livermorium, Uuh, 116</value></property>
+		<property><label>Name, symbol, number</label><value>Livermorium, Lv, 116</value></property>
 		<property><label>Element category</label><value>presumably poor metal</value></property>
 		<property><label>Group, period, block</label><value>16, 7, p</value></property>
 		<property><label>Appearance</label><value>unknown</value></property>
@@ -1411,7 +1411,7 @@
 		<property><label>Element category</label><value>Unknown</value></property>
 		<property><label>Group, period, block</label><value>17, 7, p</value></property>
 		<property><label>Appearance</label><value>Unknown</value></property>
-		<property><label>Standard atomic weight</label><value>Unknown g·mol−1</value></property>
+		<property><label>Standard atomic weight</label><value>[294] g·mol−1</value></property>
 		<property><label>Electron configuration</label><value>Unknown</value></property>
 		<property><label>Electrons per shell</label><value>2,8,18,32,32,18,7</value></property>
 	</element>
