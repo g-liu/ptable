@@ -1,0 +1,19 @@
+{
+    "folders":
+    [
+        {
+            "path": ".",
+            "folder_exclude_patterns": [
+                "dist",
+                "node_modules",
+                "bower_components",
+                ".tmp"
+            ],
+            "follow_symlinks": true
+        }
+    ],
+    "settings":
+    {
+        "tab_size": 2
+    }
+}

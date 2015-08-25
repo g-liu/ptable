@@ -1,15 +1,12 @@
-Interactive Periodic Table
-=============
+# ng-periodic
 
-A Periodic Table visualizer, built with jQuery and XML.
+This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+version 0.12.1.
 
-Still a work in progress. Please report any bugs to the Issues page.
+## Build & development
 
-## How to use
+Run `grunt` for building and `grunt serve` for preview.
 
-* Click an element to view information about it
-* Hold `Ctrl` and click multiple elements to compare
+## Testing
 
-## Demo
-
-http://g-liu.github.io/ptable
+Running `grunt test` will run the unit tests with karma.
